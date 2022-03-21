@@ -32,7 +32,7 @@ Bot.client.on("ready", async function() {
 		const guilds = Bot.client.guilds.cache;
 		await Promise.all(guilds.map(async function(guild, id) {
 
-			const { name, ownerId, verified, memberCount } = guild;
+			const { name, ownerId, verified, memberCount } = await guild.fetch();
 			const owner = Bot.client.users.cache.get(ownerId)!.tag;
 			await guild.invites.fetch();
 
