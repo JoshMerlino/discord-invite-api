@@ -1,5 +1,5 @@
 {
-    "name": "ts-server",
+    "name": "react-invite-api",
     "version": "1.0.0",
     "description": "Easily create back end servers with powerful API's using TypeScript and Express.",
     "main": "lib/src",
@@ -12,14 +12,12 @@
             "timeout": 10
         },
         "https": {
-            "enabled": true,
-            "port": 443,
-            "certs": "./ssl"
+            "enabled": false
         }
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/JoshMerlino/ts-server.git"
+        "url": "https://github.com/JoshMerlino/react-invite-api.git"
     },
     "scripts": {
         "watch-ts": "tsc -w",
