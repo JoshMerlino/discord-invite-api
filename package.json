@@ -1,7 +1,6 @@
 {
-    "name": "react-invite-api",
+    "name": "discord-invite-api",
     "version": "1.0.0",
-    "description": "Easily create back end servers with powerful API's using TypeScript and Express.",
     "main": "lib/src",
     "types": "lib/",
     "author": "Josh Merlino",
