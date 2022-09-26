@@ -9,3 +9,11 @@ dotenv.config();
 import express from "express";
 import server from "./server";
 server(express());
+
+// Purge old data
+import purge from "./purge";
+purge();
+
+// Metrics bot
+import metrics from "./metrics";
+metrics();

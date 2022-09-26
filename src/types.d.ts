@@ -12,3 +12,16 @@ declare interface Middleware {
 declare interface Runtime {
 	default(app: Express): void | Promise<void>;
 }
+
+declare interface Store {
+    id: string;
+    name: string;
+    owner: string;
+    ownerId: string;
+    verified: boolean;
+    memberCount: number | string;
+    memberOnline: number | string;
+    bannerURL: string | null;
+    iconURL: string | null;
+    inviteCodes: string[];
+}
