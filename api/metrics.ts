@@ -7,7 +7,7 @@ export const route = [
 	"metrics/:guild"
 ];
 
-export default async function api(req: Request, res: Response): Promise<void> {
+export default function api(req: Request, res: Response): void {
 
 	// Get guild from request
 	const guild = req.params?.guild ?? req.query?.guild ?? req.body?.guild;
@@ -19,8 +19,15 @@ export default async function api(req: Request, res: Response): Promise<void> {
 	}
 
 	// Try to get guild by id
-	const store = await storedData(guild);
+	const store = storedData(guild);
 
+	// If guild is not found
+	if (!store || store === null) {
+		res.status(404).json({ message: "Guild not found", success: false });
+		return;
+	}
+
+	// Send store
 	res.json(store);
 
 }
