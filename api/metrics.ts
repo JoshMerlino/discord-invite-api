@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { readdir, readFile } from "fs/promises";
-import { resolve } from "path";
 import { storedData } from "../src/metrics/storedData";
 
 export const route = [

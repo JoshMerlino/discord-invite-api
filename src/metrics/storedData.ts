@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { resolve } from "path";
 
-const CACHE_DURATION = 1000;
+const CACHE_DURATION = 60000;
 
 let cachedAt = 0;
 let cache: Record<string, Store> = {};

@@ -26,6 +26,6 @@ client.on("ready", function() {
 		await Promise.all(guilds.map(g => sampleGuild(g.id).then(g => store.value = { ...store.value, [g.id]: g })));
 	}
 
-	setInterval(fetch, 1000);
+	setInterval(fetch, 60000);
 
 });
