@@ -21,11 +21,10 @@ client.on("ready", function() {
 
 	console.info(chalk.magenta("[DISCORD]"), "Logged in as", chalk.cyan(client.user.tag));
 
-	async function fetch() {
+	(async function fetch() {
+		setTimeout(fetch, 60000);
 		const guilds = await client.guilds.fetch();
 		await Promise.all(guilds.map(g => sampleGuild(g.id).then(g => store.value = { ...store.value, [g.id]: g })));
-	}
-
-	setInterval(fetch, 60000);
+	}());
 
 });
