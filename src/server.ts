@@ -1,13 +1,7 @@
 import asyncRequireContext from "async-require-context";
 import chalk from "chalk";
-import { Application, Express, RequestHandler } from "express";
-import { readFileSync } from "fs";
-import { readFile, readdir } from "fs/promises";
+import { Express, RequestHandler } from "express";
 import http from "http";
-import https from "https";
-import { resolve } from "path";
-
-const { webserver } = JSON.parse(readFileSync(resolve("./package.json"), "utf8"));
 
 export default async function server(app: Express): Promise<void> {
 
@@ -29,35 +23,31 @@ export default async function server(app: Express): Promise<void> {
 	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(() => []);
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
-		routes.map(route => app.all(`/api/${ route }`, <Application><unknown>endpoint.module.default));
-		routes.map(route => app.all(`/${ route }`, <Application><unknown>endpoint.module.default));
+		function apply(route: string, handler: RequestHandler) {
+			app.all(`/api/${ route }`, handler);
+			app.all(`/${ route }`, handler);
+		}
+		routes.map(route => apply(route, (a, b) => {
+			try {
+				endpoint.module.default(a, b);
+			} catch (e) {
+				console.error(e);
+				b.status(500).json({
+					success: false,
+					error: "500 Internal Server Error",
+					description: "An internal server error occurred.",
+					message: process.env.DEVELOPMENT ? e : "[Redacted]"
+				});
+			}
+		}));
 		console.info(chalk.greenBright("EDP"), "Added API endpoints from", chalk.cyan(endpoint.path));
 	});
 
 	// Get port to listen on (HTTP)
-	const PORT = process.env.PORT || webserver.http.port;
-	const SSL_PORT = process.env.SSL_PORT || webserver.https.port;
+	const PORT = process.env.PORT || 80;
 
 	// Start HTTP server
 	http.createServer(app).listen(PORT);
 	console.info(chalk.redBright("SRV"), "HTTP server running on", chalk.cyan(`:${ PORT } (http)`));
-
-	// Start HTTPS server
-	if (webserver.https.enabled) {
-
-		let files = await readdir(resolve(webserver.https.certs));
-		files = files.map(file => resolve(webserver.https.certs, file));
-
-		const key = files.filter(file => file.includes("key"))[0];
-		const cert = files.filter(file => file.includes("cert"))[0];
-
-		// Initialize HTTPS server
-		https.createServer({
-			key: await readFile(key, "utf8"),
-			cert: await readFile(cert, "utf8")
-		}, app).listen(SSL_PORT);
-		console.info(chalk.redBright("SRV"), "SSL server running on", chalk.cyan(`:${ SSL_PORT } (https)`));
-
-	}
 
 }

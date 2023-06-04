@@ -2,15 +2,15 @@ declare type APIResponse = Record<string, unknown>;
 
 declare interface Endpoint {
 	route: string | string[];
-	default(req: Request, res: Response): unknown;
+	default(req: Express.Request, res: Express.Response): unknown;
 }
 
 declare interface Middleware {
-	default(req: Request, res: Response, next: NextFunction): void | Promise<void>;
+	default(req: Express.Request, res: Express.Response, next: import("express").NextFunction): void | Promise<void>;
 }
 
 declare interface Runtime {
-	default(app: Express): void | Promise<void>;
+	default(app: Express.Application): void | Promise<void>;
 }
 
 declare interface Store {
