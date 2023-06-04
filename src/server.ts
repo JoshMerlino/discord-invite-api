@@ -29,8 +29,8 @@ export default async function server(app: Express): Promise<void> {
 	const endpoints = await asyncRequireContext<Endpoint>("./lib/api").catch(() => []);
 	endpoints.map(function(endpoint) {
 		const routes = typeof endpoint.module.route === "string" ? [ endpoint.module.route ] : endpoint.module.route;
-		routes.map(route => app.all(`/api/${route}`, <Application><unknown>endpoint.module.default));
-		routes.map(route => app.all(`/${route}`, <Application><unknown>endpoint.module.default));
+		routes.map(route => app.all(`/api/${ route }`, <Application><unknown>endpoint.module.default));
+		routes.map(route => app.all(`/${ route }`, <Application><unknown>endpoint.module.default));
 		console.info(chalk.greenBright("EDP"), "Added API endpoints from", chalk.cyan(endpoint.path));
 	});
 
@@ -40,7 +40,7 @@ export default async function server(app: Express): Promise<void> {
 
 	// Start HTTP server
 	http.createServer(app).listen(PORT);
-	console.info(chalk.redBright("SRV"), "HTTP server running on", chalk.cyan(`:${PORT} (http)`));
+	console.info(chalk.redBright("SRV"), "HTTP server running on", chalk.cyan(`:${ PORT } (http)`));
 
 	// Start HTTPS server
 	if (webserver.https.enabled) {
@@ -56,7 +56,7 @@ export default async function server(app: Express): Promise<void> {
 			key: await readFile(key, "utf8"),
 			cert: await readFile(cert, "utf8")
 		}, app).listen(SSL_PORT);
-		console.info(chalk.redBright("SRV"), "SSL server running on", chalk.cyan(`:${SSL_PORT} (https)`));
+		console.info(chalk.redBright("SRV"), "SSL server running on", chalk.cyan(`:${ SSL_PORT } (https)`));
 
 	}
 

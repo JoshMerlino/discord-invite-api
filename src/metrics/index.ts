@@ -4,7 +4,7 @@ import { resolve } from "path";
 import sampleGuild from "./sampleGuild";
 import JSONStore from "filestore-json";
 
-export const client = new Client({ intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences ] });
+export const client = new Client({ intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences ]});
 
 export const store = JSONStore.from<Record<string, Store>>(resolve("./data/guilds.json"));
 

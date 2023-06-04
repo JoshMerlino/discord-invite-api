@@ -1,5 +1,3 @@
-import chalk from "chalk";
-import { Guild } from "discord.js";
 import { client } from ".";
 
 export default async function sampleGuild(id: string): Promise<Store> {
