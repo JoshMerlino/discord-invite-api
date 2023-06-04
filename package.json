@@ -23,6 +23,7 @@
         "watch-js": "nodemon .",
         "dev": "concurrently \"npm:watch-*\"",
         "start": "node .",
+        "lint": "eslint . --ext ts --fix",
         "build": "tsc"
     },
     "devDependencies": {
