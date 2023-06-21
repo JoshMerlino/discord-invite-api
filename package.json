@@ -1,6 +1,6 @@
 {
 	"name": "discord-invite-api",
-	"version": "1.0.22",
+	"version": "1.0.23",
 	"main": "lib/src",
 	"types": "lib/",
 	"author": "Josh Merlino",
