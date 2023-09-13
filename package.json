@@ -47,7 +47,7 @@
 		"extract-zip": "^2.0.1",
 		"filestore-json": "^1.1.8",
 		"mkdirp": "^3.0.1",
-		"uuid": "^9.0.0",
+		"uuid": "^9.0.1",
 		"yaml": "^2.3.2"
 	}
 }
