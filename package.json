@@ -1,6 +1,6 @@
 {
 	"name": "discord-invite-api",
-	"version": "1.0.102",
+	"version": "1.0.103",
 	"main": "lib/src",
 	"types": "lib/",
 	"author": "Josh Merlino",
@@ -23,7 +23,7 @@
 		"@types/cors": "^2.8.14",
 		"@types/express": "^4.17.17",
 		"@types/mkdirp": "^2.0.0",
-		"@types/node": "^20.6.0",
+		"@types/node": "^20.6.2",
 		"@types/uuid": "^9.0.4",
 		"@types/webpack-env": "^1.18.1",
 		"@typescript-eslint/eslint-plugin": "^5.59.8",
