@@ -1,6 +1,6 @@
 {
 	"name": "discord-invite-api",
-	"version": "1.0.124",
+	"version": "1.0.125",
 	"main": "lib/src",
 	"types": "lib/",
 	"author": "Josh Merlino",
@@ -30,7 +30,7 @@
 		"@typescript-eslint/parser": "^5.62.0",
 		"@typescript-eslint/typescript-estree": "^5.59.8",
 		"concurrently": "^8.2.1",
-		"eslint": "^8.50.0",
+		"eslint": "^8.51.0",
 		"nodemon": "^3.0.1",
 		"typescript": "^5.2.2",
 		"typescript-eslint": "0.0.1-alpha.0"
