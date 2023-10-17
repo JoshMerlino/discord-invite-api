@@ -1,6 +1,6 @@
 {
 	"name": "discord-invite-api",
-	"version": "1.0.132",
+	"version": "1.0.133",
 	"main": "lib/src",
 	"types": "lib/",
 	"author": "Josh Merlino",
@@ -48,6 +48,6 @@
 		"filestore-json": "^1.1.8",
 		"mkdirp": "^3.0.1",
 		"uuid": "^9.0.1",
-		"yaml": "^2.3.2"
+		"yaml": "^2.3.3"
 	}
 }
